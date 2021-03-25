@@ -189,7 +189,6 @@ d3.csv("resources/data/data.csv").then(function (data, err) {
 
         chosenYAxis = value;
         yLinearScale = yScale(data, chosenYAxis);
-        console.log(yLinearScale);
         yAxis = renderYAxes(yLinearScale, yAxis);
         circlesXY = renderYCircles(circlesXY, yLinearScale, chosenYAxis);
         circlesText = renderYText(circlesText, yLinearScale, chosenYAxis,);

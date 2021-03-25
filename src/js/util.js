@@ -1,50 +1,58 @@
 
 function xScale(data, xAxis) {
-  return d3.scaleLinear()
-    .domain([d3.min(data, d => d[xAxis]) * 0.9, d3.max(data, d => d[xAxis]) * 1.1])
+  var xLinearScale = d3.scaleLinear()
+    .domain([d3.min(data, d => d[chosenXAxis]) * 0.9, d3.max(data, d => d[chosenXAxis]) * 1.1])
     .range([0, width]);
+  return xLinearScale;
 }
 
 function yScale(data, yAxis) {
-  return d3.scaleLinear()
-    .domain([d3.min(data, d => d[yAxis]) - 1, d3.max(data, d => d[yAxis]) + 1])
+  var yLinearScale = d3.scaleLinear()
+    .domain([d3.min(data, d => d[chosenYAxis]) - 1, d3.max(data, d => d[chosenYAxis]) + 1])
     .range([height, 0]);
+  return yLinearScale;
 }
 
 function renderXAxes(newXScale, xAxis) {
-  return xAxis.transition()
+  xAxis.transition()
     .duration(1000)
     .call(d3.axisBottom(newXScale));
+  return xAxis;
 }
 
 function renderYAxes(newYScale, yAxis) {
-  return yAxis.transition()
+  yAxis.transition()
     .duration(1000)
     .call(d3.axisLeft(newYScale));
+  return yAxis;
 }
 
 function renderXCircles(circlesGroup, newXScale, chosenXAxis) {
-  return circlesGroup.transition()
+  circlesGroup.transition()
     .duration(1000)
     .attr("cx", d => newXScale(d[chosenXAxis]));
+  return circlesGroup;
 }
 
 function renderYCircles(circlesGroup, newYScale, chosenYAxis) {
-  return circlesGroup.transition()
+  circlesGroup.transition()
     .duration(1000)
     .attr("cy", d => newYScale(d[chosenYAxis]));
+  return circlesGroup;
 }
 
 function renderXText(circlesGroup, newXScale, chosenXAxis) {
-  return circlesGroup.transition()
+  circlesGroup.transition()
     .duration(1000)
     .attr("dx", d => newXScale(d[chosenXAxis]));
+  return circlesGroup;
 }
 
 function renderYText(circlesGroup, newYScale, chosenYAxis) {
-  return circlesGroup.transition()
+  circlesGroup.transition()
     .duration(1000)
     .attr("dy", d => newYScale(d[chosenYAxis]));
+  return circlesGroup;
 }
 
 // Format currency
